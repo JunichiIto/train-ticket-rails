@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+umeda:
+  name: うめだ
+  number: 1
+
+juso:
+  name: じゅうそう
+  number: 2
+
+mikuni:
+  name: みくに
+  number: 3
