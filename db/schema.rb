@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170709000122) do
+ActiveRecord::Schema.define(version: 20170709001351) do
 
   create_table "gates", force: :cascade do |t|
     t.string "name", null: false
@@ -26,7 +26,9 @@ ActiveRecord::Schema.define(version: 20170709000122) do
     t.integer "entered_gate_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "exited_gate_id"
     t.index ["entered_gate_id"], name: "index_tickets_on_entered_gate_id"
+    t.index ["exited_gate_id"], name: "index_tickets_on_exited_gate_id"
   end
 
 end

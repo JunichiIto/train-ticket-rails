@@ -1,7 +1,14 @@
 require 'test_helper'
 
 class GateTest < ActiveSupport::TestCase
-  test 'fixture' do
-    assert_equal 3, Gate.count
+  setup do
+    @umeda = gates(:umeda)
+    @juso = gates(:juso)
+    @mikuni = gates(:mikuni)
+  end
+
+  test 'うめだで乗って、じゅうそうで降りる' do
+    ticket = Ticket.create!(fare: 150, entered_gate: @umeda)
+    assert @juso.exit(ticket)
   end
 end
