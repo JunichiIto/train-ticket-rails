@@ -5,7 +5,12 @@ class Gate < ApplicationRecord
   validates :number, presence: true, uniqueness: true
 
   def exit(ticket)
-    ticket.fare >= calc_fare(ticket)
+    if ticket.fare >= calc_fare(ticket)
+      ticket.mark_as_used!(self)
+      true
+    else
+      false
+    end
   end
 
   private
