@@ -1,0 +1,6 @@
+<%= simple_form_for @ticket, html: { class: 'form-inline' } do |f| %>
+  <% fare_collection = Gate::FARES.map { |fare| ["#{fare}円", fare] } %>
+  <%= f.input :fare, collection: fare_collection, include_blank: false %>
+  <%= f.association :entered_gate, collection: Gate.order_by_number, include_blank: false %>
+  <%= f.submit '乗る', class: 'btn btn-primary' %>
+<% end %>

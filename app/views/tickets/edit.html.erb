@@ -1,0 +1,8 @@
+<p>
+  <%= "運賃：#{@ticket.fare}円 / 乗車駅：#{@ticket.entered_gate.name}" %>
+</p>
+
+<%= simple_form_for @ticket, html: { class: 'form-inline' } do |f| %>
+  <%= f.association :exited_gate, collection: Gate.order_by_number, include_blank: false %>
+  <%= f.submit '降りる', class: 'btn btn-primary' %>
+<% end %>

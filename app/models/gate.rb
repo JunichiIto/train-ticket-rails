@@ -4,13 +4,10 @@ class Gate < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :number, presence: true, uniqueness: true
 
-  def exit(ticket)
-    if ticket.fare >= calc_fare(ticket)
-      ticket.mark_as_used!(self)
-      true
-    else
-      false
-    end
+  scope :order_by_number, -> { order(:number) }
+
+  def exit?(ticket)
+    ticket.fare >= calc_fare(ticket)
   end
 
   private
