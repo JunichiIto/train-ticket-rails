@@ -1,6 +1,26 @@
+// http://coliss.com/articles/build-websites/operation/css/css-responsive-full-background-image-by-sixrevisions.html
+body {
+  background-image: image-url('hankyu.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
+}
+
+body {
+  font-size: 21px;
+}
+
 label {
   margin-right: 10px;
 }
+
 select {
   margin-right: 15px;
+}
+
+.jumbotron {
+  background-color: rgba(248, 248, 248, 0.9);
+  min-height: 280px;
 }
