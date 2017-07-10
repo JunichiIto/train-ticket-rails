@@ -51,13 +51,13 @@ class GateTest < ActiveSupport::TestCase
 
   # その他
   test '同じ駅では降りられない' do
-    ticket = Ticket.create!(fare: 150, entered_gate: @umeda)
+    ticket = Ticket.create!(fare: 190, entered_gate: @umeda)
     refute @umeda.exit?(ticket)
 
-    ticket = Ticket.create!(fare: 150, entered_gate: @juso)
+    ticket = Ticket.create!(fare: 190, entered_gate: @juso)
     refute @juso.exit?(ticket)
 
-    ticket = Ticket.create!(fare: 150, entered_gate: @mikuni)
+    ticket = Ticket.create!(fare: 190, entered_gate: @mikuni)
     refute @mikuni.exit?(ticket)
   end
 end

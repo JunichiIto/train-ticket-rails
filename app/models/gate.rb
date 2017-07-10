@@ -7,6 +7,7 @@ class Gate < ApplicationRecord
   scope :order_by_number, -> { order(:number) }
 
   def exit?(ticket)
+    return false if ticket.entered_gate == self
     ticket.fare >= calc_fare(ticket)
   end
 
