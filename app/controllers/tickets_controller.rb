@@ -2,6 +2,10 @@ class TicketsController < ApplicationController
   before_action :load_ticket, only: %i(edit update show)
   before_action :abort_exited_ticket, only: %i(edit update)
 
+  def index
+    redirect_to root_path
+  end
+
   def new
     if @ticket = Ticket.not_exited.order(created_at: :desc).first
       redirect_to [:edit, @ticket], notice: '降車していない切符があります。'
