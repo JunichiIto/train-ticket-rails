@@ -12,6 +12,15 @@ body {
   font-size: 21px;
 }
 
+footer {
+  font-size: 13px;
+  color: #333;
+  text-shadow: 1px 1px 0 #ddd;
+  a {
+    color: inherit;
+  }
+}
+
 label {
   margin-right: 10px;
 }
