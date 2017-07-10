@@ -13,7 +13,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(ticket_create_params)
     if @ticket.save
-      redirect_to [:edit, @ticket], notice: '乗車しました。'
+      redirect_to [:edit, @ticket], notice: '乗車しました。🚃'
     else
       flash_for_error
       render :new
@@ -29,7 +29,7 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update(ticket_update_params)
-      redirect_to root_path, notice: '降車しました。'
+      redirect_to root_path, notice: '降車しました。😄'
     else
       flash_for_error
       render :edit
