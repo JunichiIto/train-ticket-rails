@@ -7,9 +7,6 @@ class TicketsController < ApplicationController
   end
 
   def new
-    if @ticket = Ticket.not_exited.order(created_at: :desc).first
-      redirect_to [:edit, @ticket], notice: '降車していない切符があります。'
-    end
     @ticket = Ticket.new
   end
 
