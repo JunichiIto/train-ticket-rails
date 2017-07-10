@@ -15,7 +15,7 @@ class Gate < ApplicationRecord
   def calc_fare(ticket)
     from = ticket.entered_gate.number
     to = number
-    distance = to - from
+    distance = (to - from).abs
     FARES[distance - 1]
   end
 end
