@@ -15,9 +15,6 @@ class TicketsTest < ApplicationSystemTestCase
 
   test '運賃が足りない場合' do
     skip 'Please implement this!'
-    def exited?
-      exited_gate.present?
-    end
     visit root_path
     select '150円', from: '切符'
     select 'うめだ', from: '乗車駅'
