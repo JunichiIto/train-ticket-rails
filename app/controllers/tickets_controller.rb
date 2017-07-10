@@ -16,7 +16,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(ticket_create_params)
     if @ticket.save
-      redirect_to [:edit, @ticket], notice: '乗りました。'
+      redirect_to [:edit, @ticket], notice: '乗車しました。'
     else
       render :new
     end

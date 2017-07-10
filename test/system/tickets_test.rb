@@ -5,8 +5,8 @@ class TicketsTest < ApplicationSystemTestCase
     visit root_path
     select '150円', from: '運賃'
     select 'うめだ', from: '乗車駅'
-    click_button '乗る'
-    assert_text '乗りました。'
+    click_button '乗車する'
+    assert_text '乗車しました。'
 
     select 'みくに', from: '降車駅'
     click_button '降りる'
