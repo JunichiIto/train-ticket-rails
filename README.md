@@ -118,7 +118,7 @@ You have skipped tests. Run with --verbose for details.
 
 ### Ex1. Gate#exit? メソッドの実装
 
-`test/models/gate_test.rb`を開き、`skip 'Please implement!'`の行を削除してください。（3箇所）
+`test/models/gate_test.rb`を開き、`skip 'Please implement this!'`の行を削除してください。（3箇所）
 
 テストを実行し、テストが失敗することを確認してください。
 
@@ -166,7 +166,7 @@ Finished in 0.105675s, 94.6298 runs/s, 104.0927 assertions/s.
 
 ### Ex2. 画面の実装
 
-`test/system/tickets_test.rb`を開き、「運賃が足りない場合」のテストケースにある、`skip 'Please implement!'`の行を削除してください。
+`test/system/tickets_test.rb`を開き、「運賃が足りない場合」のテストケースにある、`skip 'Please implement this!'`の行を削除してください。
 
 システムテストを実行し、テストが失敗することを確認してください。
 
@@ -205,7 +205,7 @@ You have skipped tests. Run with --verbose for details.
 
 ### Ex3. 特殊ケースの実装
 
-`test/system/tickets_test.rb`を開き、「すでに使用済みの切符を指定されたらトップページに移動する」のテストケースにある、`skip 'Please implement!'`の行を削除してください。
+`test/system/tickets_test.rb`を開き、「すでに使用済みの切符を指定されたらトップページに移動する」のテストケースにある、`skip 'Please implement this!'`の行を削除してください。
 
 システムテストを実行し、テストが失敗することを確認してください。
 
