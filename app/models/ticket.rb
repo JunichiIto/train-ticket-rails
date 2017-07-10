@@ -11,4 +11,8 @@ class Ticket < ApplicationRecord
   end
 
   scope :not_exited, -> { where(exited_gate_id: nil) }
+
+  def exited?
+    exited_gate.present?
+  end
 end
