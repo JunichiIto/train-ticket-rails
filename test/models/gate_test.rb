@@ -34,7 +34,7 @@ class GateTest < ActiveSupport::TestCase
     assert @juso.exit?(ticket)
   end
 
-  test 'みくに150円の切符を買って、うめだで降りる' do
+  test 'みくにで150円の切符を買って、うめだで降りる' do
     ticket = Ticket.create!(fare: 150, entered_gate: @mikuni)
     refute @umeda.exit?(ticket)
   end
