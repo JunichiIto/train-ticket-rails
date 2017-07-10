@@ -2,6 +2,32 @@
 
 Sample application for Rails Developers Meetup.
 
+## Application Overview
+
+購入する切符と乗車駅を選択し、「乗車する」ボタンをクリックします。
+
+![screen shot 2017-07-11 at 8 13 58](https://user-images.githubusercontent.com/1148320/28044223-11b718dc-6611-11e7-87b0-844c5d1b86ee.png)
+
+降車駅を選択し、「降車する」ボタンをクリックします。
+
+![screen shot 2017-07-11 at 8 14 11](https://user-images.githubusercontent.com/1148320/28044228-1545f91e-6611-11e7-93a2-db613d1b6244.png)
+
+降車可能な駅であれば、最初の画面に戻ります。
+
+![screen shot 2017-07-11 at 8 14 16](https://user-images.githubusercontent.com/1148320/28044229-156f22e4-6611-11e7-8e6f-12f999505c52.png)
+
+降車できない場合はエラーメッセージが表示されます。
+
+![screen shot 2017-07-11 at 8 17 42](https://user-images.githubusercontent.com/1148320/28044283-75f91f70-6611-11e7-8c7a-00cc366c6380.png)
+
+### 運賃表
+
+|  |      |      |
+|------|------|------|
+| うめだ |      |      |
+| 150  | じゅうそう |      |
+| 190  | 150  | みくに |
+
 ## Procedures
 
 回答の流れは以下のとおりです。
@@ -239,6 +265,17 @@ Finished in 3.734839s, 1.3387 runs/s, 2.1420 assertions/s.
 
 実装が完了したら、Pull requestを作成して回答を提出してください。
 
+### 備考
+
+- 最後まで回答できなかった場合は、途中でギブアップして回答してもらってもOKです。
+- こだわった点やアピールポイントがあれば、Pull requestのDescriptionに記述してください。
+
 ## Inquiries
 
 何か不明な点があれば、[@jnchito](https://twitter.com/jnchito/)までご連絡ください。
+
+## あわせて読みたい
+
+この問題は「プロを目指す人のためのRuby入門」（2017年11月発売予定）で使用した例題がベースになっています。
+
+[【鋭意制作中】Rubyの入門本「プロを目指す人のためのRuby入門」を執筆しています \- give IT a try](http://blog.jnito.com/entry/2017/05/30/120148)
