@@ -23,4 +23,7 @@ select {
 .jumbotron {
   background-color: rgba(248, 248, 248, 0.9);
   min-height: 230px;
+  form button {
+    vertical-align: top;
+  }
 }
