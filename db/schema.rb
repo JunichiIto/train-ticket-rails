@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170709001351) do
+ActiveRecord::Schema.define(version: 20170710234011) do
 
   create_table "gates", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "number", null: false
+    t.integer "station_number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_gates_on_name", unique: true
-    t.index ["number"], name: "index_gates_on_number", unique: true
+    t.index ["station_number"], name: "index_gates_on_station_number", unique: true
   end
 
   create_table "tickets", force: :cascade do |t|

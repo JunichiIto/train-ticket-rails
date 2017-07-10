@@ -1,9 +1,9 @@
 <p>
-  <%= "運賃：#{@ticket.fare}円 / 乗車駅：#{@ticket.entered_gate.name}" %>
+  <%= "#{t('activerecord.attributes.ticket.fare')}：#{@ticket.fare}円 / #{t('activerecord.attributes.ticket.entered_gate')}：#{@ticket.entered_gate.name}" %>
 </p>
 
 <%= simple_form_for @ticket, html: { class: 'form-inline' } do |f| %>
-  <%= f.association :exited_gate, collection: Gate.order_by_number, include_blank: false %>
+  <%= f.association :exited_gate, collection: Gate.order_by_station_number, include_blank: false %>
   <%= button_tag class: 'btn btn-info' do %>
     <%= fa_icon 'sign-out', text: '降車する' %>
   <% end %>

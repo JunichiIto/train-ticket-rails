@@ -35,6 +35,6 @@ ja:
       ticket: 切符
     attributes:
       ticket:
-        fare: 運賃
+        fare: 切符
         entered_gate: 乗車駅
         exited_gate: 降車駅

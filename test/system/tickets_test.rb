@@ -3,7 +3,7 @@ require "application_system_test_case"
 class TicketsTest < ApplicationSystemTestCase
   test '乗車して降車する' do
     visit root_path
-    select '150円', from: '運賃'
+    select '150円', from: '切符'
     select 'うめだ', from: '乗車駅'
     click_button '乗車する'
     assert_text '乗車しました。'
@@ -15,7 +15,7 @@ class TicketsTest < ApplicationSystemTestCase
 
   test '運賃が足りない場合' do
     visit root_path
-    select '150円', from: '運賃'
+    select '150円', from: '切符'
     select 'うめだ', from: '乗車駅'
     click_button '乗車する'
     assert_text '乗車しました。'

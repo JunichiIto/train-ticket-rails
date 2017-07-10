@@ -6,19 +6,19 @@ Sample application for Rails Developers Meetup.
 
 購入する切符と乗車駅を選択し、「乗車する」ボタンをクリックします。
 
-![screen shot 2017-07-11 at 8 13 58](https://user-images.githubusercontent.com/1148320/28044223-11b718dc-6611-11e7-87b0-844c5d1b86ee.png)
+![screen shot 2017-07-11 at 8 33 11](https://user-images.githubusercontent.com/1148320/28044694-c5620494-6613-11e7-928f-cca198d66cb1.png)
 
 降車駅を選択し、「降車する」ボタンをクリックします。
 
-![screen shot 2017-07-11 at 8 14 11](https://user-images.githubusercontent.com/1148320/28044228-1545f91e-6611-11e7-93a2-db613d1b6244.png)
+![screen shot 2017-07-11 at 8 33 19](https://user-images.githubusercontent.com/1148320/28044695-c58a7ad2-6613-11e7-88b8-13d2195b4a25.png)
 
 降車可能な駅であれば、最初の画面に戻ります。
 
-![screen shot 2017-07-11 at 8 14 16](https://user-images.githubusercontent.com/1148320/28044229-156f22e4-6611-11e7-8e6f-12f999505c52.png)
+![screen shot 2017-07-11 at 8 33 22](https://user-images.githubusercontent.com/1148320/28044697-c595ee4e-6613-11e7-995b-3f547f0b9a1b.png)
 
 降車できない場合はエラーメッセージが表示されます。
 
-![screen shot 2017-07-11 at 8 17 42](https://user-images.githubusercontent.com/1148320/28044283-75f91f70-6611-11e7-8c7a-00cc366c6380.png)
+![screen shot 2017-07-11 at 8 33 29](https://user-images.githubusercontent.com/1148320/28044696-c59556aa-6613-11e7-807d-866e2052e364.png)
 
 ### 運賃表
 
@@ -27,6 +27,14 @@ Sample application for Rails Developers Meetup.
 | うめだ |      |      |
 | 150  | じゅうそう |      |
 | 190  | 150  | みくに |
+
+### 駅番号
+
+駅の並び順を明示的に表すために、このアプリケーションでは各駅に駅番号（`station_number`）を付与している。
+
+- うめだ = 1
+- じゅうそう = 2
+- みくに = 3
 
 ## Procedures
 
@@ -180,7 +188,7 @@ F
 
 Failure:
 TicketsTest#test_運賃が足りない場合 [/Users/jit/dev/sandbox/train-ticket-rails/test/system/tickets_test.rb:25]:
-expected to find text "では降車できません。" in "TrainTicketRails 降車しました。😄 運賃 150円 190円 乗車駅 うめだ じゅうそう みくに 乗車する Image: Wikipedia"
+expected to find text "では降車できません。" in "TrainTicketRails 降車しました。😄 切符 150円 190円 乗車駅 うめだ じゅうそう みくに 乗車する Image: Wikipedia"
 
 
 bin/rails test test/system/tickets_test.rb:16

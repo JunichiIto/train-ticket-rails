@@ -2,12 +2,12 @@
 
 umeda:
   name: うめだ
-  number: 1
+  station_number: 1
 
 juso:
   name: じゅうそう
-  number: 2
+  station_number: 2
 
 mikuni:
   name: みくに
-  number: 3
+  station_number: 3

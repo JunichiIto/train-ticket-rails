@@ -1,10 +1,11 @@
+# NOTE: Gate = 改札機のイメージ
 class Gate < ApplicationRecord
   FARES = [150, 190]
 
   validates :name, presence: true, uniqueness: true
-  validates :number, presence: true, uniqueness: true
+  validates :station_number, presence: true, uniqueness: true
 
-  scope :order_by_number, -> { order(:number) }
+  scope :order_by_station_number, -> { order(:station_number) }
 
   def exit?(ticket)
     return false if ticket.entered_gate == self
@@ -14,8 +15,8 @@ class Gate < ApplicationRecord
   private
 
   def calc_fare(ticket)
-    from = ticket.entered_gate.number
-    to = number
+    from = ticket.entered_gate.station_number
+    to = station_number
     distance = (to - from).abs
     FARES[distance - 1]
   end
