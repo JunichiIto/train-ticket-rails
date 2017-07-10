@@ -16,4 +16,11 @@ class TicketsTest < ApplicationSystemTestCase
     click_button '降りる'
     assert_text '降りました。'
   end
+
+  test 'すでに乗車済み、未降車の切符があったら降車画面に移動する' do
+    ticket = Ticket.create!(fare: 150, entered_gate: gates(:umeda))
+    visit root_path
+    assert_current_path edit_ticket_path(ticket)
+    assert_text '降車していない切符があります。'
+  end
 end
