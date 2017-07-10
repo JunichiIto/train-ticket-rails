@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :load_ticket, only: %i(edit update)
+  before_action :load_ticket, only: %i(edit update show)
   before_action :abort_exited_ticket, only: %i(edit update)
 
   def new
@@ -16,6 +16,10 @@ class TicketsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    redirect_to [:edit, @ticket]
   end
 
   def edit

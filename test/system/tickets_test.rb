@@ -30,4 +30,10 @@ class TicketsTest < ApplicationSystemTestCase
     assert_current_path root_path
     assert_text '降車済みの切符です。'
   end
+
+  test 'showにアクセスされたらeditに移動する' do
+    ticket = Ticket.create!(fare: 150, entered_gate: gates(:umeda))
+    visit ticket_path(ticket)
+    assert_current_path edit_ticket_path(ticket)
+  end
 end
