@@ -9,12 +9,12 @@ class TicketsTest < ApplicationSystemTestCase
     assert_text '乗車しました。'
 
     select 'みくに', from: '降車駅'
-    click_button '降りる'
+    click_button '降車する'
     assert_text 'では降車できません。'
 
     select 'じゅうそう', from: '降車駅'
-    click_button '降りる'
-    assert_text '降りました。'
+    click_button '降車する'
+    assert_text '降車しました。'
   end
 
   test 'すでに乗車済み、未降車の切符があったら降車画面に移動する' do
