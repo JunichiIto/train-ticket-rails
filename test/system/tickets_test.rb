@@ -26,7 +26,6 @@ class TicketsTest < ApplicationSystemTestCase
   end
 
   test 'すでに使用済みの切符を指定されたらトップページに移動する' do
-    skip 'Please implement this!'
     ticket = Ticket.create!(fare: 150, entered_gate: gates(:umeda), exited_gate: gates(:juso))
     visit edit_ticket_path(ticket)
     assert_current_path root_path
