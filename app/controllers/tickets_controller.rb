@@ -27,10 +27,12 @@ class TicketsController < ApplicationController
   end
 
   def update
-    if @ticket.update(ticket_update_params)
+    @ticket.assign_attributes(ticket_update_params)
+
+    if @ticket.save(context: :exit)
       redirect_to root_path, notice: '降車しました。😄'
     else
-      flash_for_error
+      flash.now[:alert] = format('%s では降車できません。', @ticket.exited_gate.name)
       render :edit
     end
   end
