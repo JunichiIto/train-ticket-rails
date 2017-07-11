@@ -1,3 +1,10 @@
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
 language: ruby
 
 rvm:
@@ -8,8 +15,10 @@ bundler_args: "--without development --deployment"
 cache: bundler
 
 before_script:
-  - cp config/database.travis.yml config/database.yml
+  - cp config/database.yml.travis config/database.yml
   - bundle exec rake db:setup
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 
 script:
   - bin/rails test
