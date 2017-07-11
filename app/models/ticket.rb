@@ -15,6 +15,10 @@ class Ticket < ApplicationRecord
     validate :ensure_section_fare_can_be_paid
   end
 
+  def spent?
+    exited_gate.present?
+  end
+
   private
 
   def section
