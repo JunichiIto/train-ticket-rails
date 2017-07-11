@@ -30,7 +30,7 @@ Sample application for Rails Developers Meetup.
 
 ### 駅番号
 
-駅の並び順を明示的に表すために、このアプリケーションでは各駅に駅番号（`station_number`）を付与している。
+駅の並び順を明示的に表すために、このアプリケーションでは各駅に駅番号（`station_number`）を付与しています。
 
 - うめだ = 1
 - じゅうそう = 2
