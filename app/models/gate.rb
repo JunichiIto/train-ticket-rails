@@ -2,12 +2,15 @@
 class Gate < ApplicationRecord
   FARES = [150, 190]
 
-  validates :name, presence: true, uniqueness: true
-  validates :station_number, presence: true, uniqueness: true
+  with_options presence: true, uniqueness: true do
+    validates :name
+    validates :station_number
+  end
 
   scope :order_by_station_number, -> { order(:station_number) }
 
   def exit?(ticket)
-    true
+    ticket.exited_gate = self
+    ticket.valid?(:exit)
   end
 end
