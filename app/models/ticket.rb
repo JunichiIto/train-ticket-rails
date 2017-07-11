@@ -22,7 +22,7 @@ class Ticket < ApplicationRecord
   private
 
   def section
-    @_section ||= Section.new(self)
+    @_section ||= Section.new(boarding: entered_gate, alighting: exited_gate)
   end
 
   def ensure_gates_are_not_same
