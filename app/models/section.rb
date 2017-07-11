@@ -1,9 +1,9 @@
 class Section
   attr_reader :boarding, :alighting
 
-  def initialize(ticket)
-    @boarding  = ticket.entered_gate || Gate.new
-    @alighting = ticket.exited_gate  || Gate.new
+  def initialize(boarding:, alighting:)
+    @boarding  = boarding  || Gate.new
+    @alighting = alighting || Gate.new
   end
 
   def distance
