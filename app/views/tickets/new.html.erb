@@ -3,6 +3,6 @@
   <%= f.input :fare, collection: fare_collection, include_blank: false %>
   <%= f.association :entered_gate, collection: Gate.order_by_station_number, include_blank: false %>
   <%= button_tag class: 'btn btn-success' do %>
-    <%= fa_icon 'train', text: '乗車する' %>
+    <%= fa_icon 'subway', text: '乗車する' %>
   <% end %>
 <% end %>
