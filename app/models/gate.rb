@@ -12,8 +12,10 @@ class Gate < ApplicationRecord
     fare_from(ticket.entered_gate) <= ticket.fare
   end
 
+  private
+
   def distance_from(departure)
-    (self.station_number - departure.station_number).abs - 1
+    (station_number - departure.station_number).abs - 1
   end
 
   def fare_from(destination)

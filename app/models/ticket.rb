@@ -6,6 +6,8 @@ class Ticket < ApplicationRecord
 
   validate :exitable?, on: :update
 
+  private
+
   def exitable?
     errors.add(:exited_gate_id, 'では降車できません。') unless exited_gate.exit?(self)
   end

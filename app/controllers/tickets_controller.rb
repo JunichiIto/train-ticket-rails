@@ -55,7 +55,7 @@ class TicketsController < ApplicationController
   end
 
   def redirect_to_root_if_used
-    if @ticket.entered_gate.present? && @ticket.exited_gate.present?
+    if @ticket.exited_gate.present?
       flash[:alert] = '降車済みの切符です。'
       redirect_to root_path
     end
