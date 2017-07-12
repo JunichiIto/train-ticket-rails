@@ -4,7 +4,7 @@ class Ticket < ApplicationRecord
   validates :fare, presence: true, inclusion: Gate::FARES
   validates :entered_gate_id, presence: true
 
-  validate :exitable?, on: :update
+  validate :exitable?, if: -> { exited_gate.present? }
 
   private
 
