@@ -2,7 +2,13 @@
 
 Sample application for Rails Developers Meetup.
 
+電車の改札口を簡易的にシミュレーションするRailsアプリケーションです。
+
 ## Application Overview
+
+切符を購入して乗車し、目的の駅で降車する流れを以下のようにシミュレートします。
+
+### 操作手順
 
 購入する切符と乗車駅を選択し、「乗車する」ボタンをクリックします。
 
@@ -18,9 +24,13 @@ Sample application for Rails Developers Meetup.
 
 降車できない場合はエラーメッセージが表示されます。
 
-![screen shot 2017-07-11 at 8 33 29](https://user-images.githubusercontent.com/1148320/28044696-c59556aa-6613-11e7-807d-866e2052e364.png)
+![screen shot 2017-07-16 at 8 20 45](https://user-images.githubusercontent.com/1148320/28243305-c075f784-69ff-11e7-84d1-7b7cdc5818fb.png)
 
 ### 運賃表
+
+運賃は以下のようになっています。
+
+仕様を複雑にしないよう、1区間 = 150円、2区間 = 190円で単純に固定されています。
 
 |  |      |      |
 |------|------|------|
@@ -36,67 +46,103 @@ Sample application for Rails Developers Meetup.
 - じゅうそう = 2
 - みくに = 3
 
-## Procedures
+### 解答される方への注意事項
 
-回答の流れは以下のとおりです。
+これはあくまで勉強会用のサンプルアプリケーションなので、ごくごく単純な仕様で実装しています。  
+本番運用されることはないため、「こんな仕様も必要なのでは？」「こういうケースもありえるのでは？」といった深読みは不要です。
+
+### 考慮不要な仕様の例
+
+- 駅が増えたり減ったりするケース
+- 運賃が変更されたり、「1区間 = 150円、2区間 = 190円」以外の運賃が登場したりするケース
+- 出題内容以外の例外的な画面操作や、異常な入力値
+- ユーザーの利便性を高めるためのUI改善
+
+### 解答時の制限事項
+
+解答時の実装方法は基本的に自由ですが、参加者の解答バリエーションが過度に増えてしまわないよう、以下の制限を設けます。
+
+- ファイルを追加してはいけません（新しいクラスやマイグレーションを増やさない）。既存のファイルを変更するだけにしてください。
+- 変更してよいファイルはモデルとコントローラのみとします。ビューやヘルパークラスは変更しないでください。
+- テストコードは`skip`メソッドの行を削除する以外の変更を加えないでください（新しいテストパターンを増やさない）。
+- Gemfileに新しいgemを追加しないでください。
+
+### その他
+
+今回のサンプルアプリケーションでは、Gateクラス（改札機クラス）に運賃が定数として埋め込まれています（`Gate::FARES`）。  
+「こんなところに運賃が定義されているのは設計としておかしい！」という意見もあるかもしれませんが、これはあくまで簡易的なサンプルアプリケーションということで、スルーしてやってください 🙇
+
+## 解答の流れ
+
+解答の流れは以下のとおりです。
 
 - このリポジトリ（upstream）を自分のアカウントにフォークする
 - 開発環境をセットアップする（下記参照）
 - 設問を解く（内容は後述）
 - 自分のリポジトリからupstreamに対して、Pull requestを作成する
 
-## Ruby version
+## 解答に利用するRubyのバージョン
 
-- 2.4.1 (recommended)
-- 2.2.2 or newer
+2.4.1を推奨。（ただし、2.2.2以上であれば可）
 
-## System dependencies
+## 依存する外部アプリケーション
 
-- Google Chrome (for system tests)
+- Google Chrome （システムテストで使用）
 
-## Configuration
+## 必要となるPCの設定
 
-- Install ChromeDriver for system tests
+ChromeDriverをインストールしてください。（システムテストで使用）
 
 ```
-# Mac
+# Macの場合
+brew update
 brew install chromedriver
 ```
 
-## Database creation
+ChromeDriverを自分でダウンロードして、PATHの通ったディレクトリに配置するのもOKです。
+
+- [Downloads \- ChromeDriver \- WebDriver for Chrome](https://sites.google.com/a/chromium.org/chromedriver/downloads)
+
+## Railsのセットアップ
+
+このリポジトリをフォークし、ローカルにcloneしたら、次のコマンドでセットアップを実行してください。
 
 ```
-bin/rails db:setup
+bin/setup
 ```
 
-## Database initialization
+セットアップを実行したらRailsを起動し、 http://localhost:3000/ にアクセスしてください。  
+正常に画面が表示されればOKです。
 
 ```
-# Use fixtures instead of seeds.rb
-bin/rails db:fixtures:load
+rails s
 ```
 
-## How to run the test suite
+![screen shot 2017-07-11 at 8 33 11](https://user-images.githubusercontent.com/1148320/28044694-c5620494-6613-11e7-928f-cca198d66cb1.png)
+
+## テストコードの実行
+
+以下のコマンドを実行し、テストコードが正常に動作することを確認してください。
 
 ```
 bin/rails test && bin/rails test:system
 ```
 
-Then you see:
+次のような表示になればOKです。
 
 ```
-Running via Spring preloader in process 24707
-Run options: --seed 28410
+Running via Spring preloader in process 27919
+Run options: --seed 3647
 
 # Running:
 
-.S.S.S....
+.S..S..S..
 
-Finished in 0.101604s, 98.4213 runs/s, 78.7371 assertions/s.
+Finished in 0.067467s, 148.2206 runs/s, 118.5765 assertions/s.
 10 runs, 8 assertions, 0 failures, 0 errors, 3 skips
 
 You have skipped tests. Run with --verbose for details.
-Run options: --seed 41156
+Run options: --seed 40891
 
 # Running:
 
@@ -104,114 +150,73 @@ Puma starting in single mode...
 * Version 3.9.1 (ruby 2.4.1-p111), codename: Private Caller
 * Min threads: 0, max threads: 1
 * Environment: test
-* Listening on tcp://0.0.0.0:56207
+* Listening on tcp://0.0.0.0:63371
 Use Ctrl-C to stop
-.S..S
+..SS.S
 
-Finished in 3.095415s, 1.6153 runs/s, 1.2922 assertions/s.
-5 runs, 4 assertions, 0 failures, 0 errors, 2 skips
+Finished in 3.099099s, 1.9360 runs/s, 1.2907 assertions/s.
+6 runs, 4 assertions, 0 failures, 0 errors, 3 skips
 
 You have skipped tests. Run with --verbose for details.
 ```
 
-## Exercises
+## 問題
 
-### Ex1. Gate#exit? メソッドの実装
+ここから問題が始まります。  
+以下の問題文をよく読んで、解答してください。
 
-`test/models/gate_test.rb`を開き、`skip 'Please implement this!'`の行を削除してください。（3箇所）
+### Ex1. 運賃の計算（下り）
+
+`test/models/gate_test.rb`を開き、「うめだで150円の切符を買って、みくにで降りる（運賃不足）」にある`skip 'Please implement this!'`の行を削除してください。
 
 テストを実行し、テストが失敗することを確認してください。
 
 ```
 $ bin/rails test
-Running via Spring preloader in process 25108
-Run options: --seed 13135
+Running via Spring preloader in process 28084
+Run options: --seed 58060
 
 # Running:
 
-..F
+..S...F
 
 Failure:
-GateTest#test_みくにで150円の切符を買って、うめだで降りる [/Users/jit/dev/sandbox/train-ticket-rails/test/models/gate_test.rb:39]:
-Expected true to not be truthy.
-
-
-bin/rails test test/models/gate_test.rb:37
-
-F
-
-Failure:
-GateTest#test_同じ駅では降りられない [/Users/jit/dev/sandbox/train-ticket-rails/test/models/gate_test.rb:55]:
-Expected true to not be truthy.
-
-
-bin/rails test test/models/gate_test.rb:53
-
-...F
-
-Failure:
-GateTest#test_うめだで150円の切符を買って、みくにで降りる [/Users/jit/dev/sandbox/train-ticket-rails/test/models/gate_test.rb:18]:
+GateTest#test_うめだで150円の切符を買って、みくにで降りる（運賃不足） [/Users/jit/dev/sandbox/train-ticket-rails/test/models/gate_test.rb:18]:
 Expected true to not be truthy.
 
 
 bin/rails test test/models/gate_test.rb:16
 
-..
+..S
 
-Finished in 0.105675s, 94.6298 runs/s, 104.0927 assertions/s.
-10 runs, 11 assertions, 3 failures, 0 errors, 0 skips
-```
-
-テストがパスするように実装してください。
-
-### Ex2. 画面の実装
-
-`test/system/tickets_test.rb`を開き、「運賃が足りない場合」のテストケースにある、`skip 'Please implement this!'`の行を削除してください。
-
-システムテストを実行し、テストが失敗することを確認してください。
-
-```
-$ bin/rails test:system
-Run options: --seed 48233
-
-# Running:
-
-SPuma starting in single mode...
-* Version 3.9.1 (ruby 2.4.1-p111), codename: Private Caller
-* Min threads: 0, max threads: 1
-* Environment: test
-* Listening on tcp://0.0.0.0:56470
-Use Ctrl-C to stop
-..[Screenshot]: tmp/screenshots/failures_test_運賃が足りない場合.png
-
-F
-
-Failure:
-TicketsTest#test_運賃が足りない場合 [/Users/jit/dev/sandbox/train-ticket-rails/test/system/tickets_test.rb:25]:
-expected to find text "では降車できません。" in "TrainTicketRails 降車しました。😄 切符 150円 190円 乗車駅 うめだ じゅうそう みくに 乗車する Image: Wikipedia"
-
-
-bin/rails test test/system/tickets_test.rb:16
-
-.
-
-Finished in 6.378930s, 0.7838 runs/s, 0.9406 assertions/s.
-5 runs, 6 assertions, 1 failures, 0 errors, 1 skips
+Finished in 0.058427s, 171.1537 runs/s, 154.0384 assertions/s.
+10 runs, 9 assertions, 1 failures, 0 errors, 2 skips
 
 You have skipped tests. Run with --verbose for details.
 ```
 
 テストがパスするように実装してください。
 
-### Ex3. 特殊ケースの実装
+### Ex2. 運賃の計算（上り）
 
-`test/system/tickets_test.rb`を開き、「すでに使用済みの切符を指定されたらトップページに移動する」のテストケースにある、`skip 'Please implement this!'`の行を削除してください。
+`test/models/gate_test.rb`を開き、「みくにで150円の切符を買って、うめだで降りる（運賃不足）」にある`skip 'Please implement this!'`の行を削除してください。
+
+Ex1と同じ要領で実装してください。
+
+### Ex3. 同じ駅で降りる場合
+
+`test/models/gate_test.rb`を開き、「同じ駅では降りられない」にある`skip 'Please implement this!'`の行を削除してください。
+
+Ex1と同じ要領で実装してください。
+
+### Ex4. 画面の実装
+
+`test/system/tickets_test.rb`を開き、「運賃が足りない場合」と「同じ駅で降りる場合」のテストケースにある、`skip 'Please implement this!'`の行を削除してください。（計2箇所）
 
 システムテストを実行し、テストが失敗することを確認してください。
 
 ```
-$ bin/rails test:system
-Run options: --seed 58157
+Run options: --seed 13045
 
 # Running:
 
@@ -219,43 +224,62 @@ Puma starting in single mode...
 * Version 3.9.1 (ruby 2.4.1-p111), codename: Private Caller
 * Min threads: 0, max threads: 1
 * Environment: test
-* Listening on tcp://0.0.0.0:57047
+* Listening on tcp://0.0.0.0:63717
 Use Ctrl-C to stop
-....[Screenshot]: tmp/screenshots/failures_test_すでに使用済みの切符を指定されたらトップページに移動する.png
+[Screenshot]: tmp/screenshots/failures_test_運賃が足りない場合.png
 
 F
 
 Failure:
-TicketsTest#test_すでに使用済みの切符を指定されたらトップページに移動する [/Users/jit/dev/sandbox/train-ticket-rails/test/system/tickets_test.rb:31]:
-expected "/tickets/1/edit" to equal "/"
+TicketsTest#test_運賃が足りない場合 [/Users/jit/dev/sandbox/train-ticket-rails/test/system/tickets_test.rb:25]:
+expected to find text "降車駅 では降車できません。" in "TrainTicketRails 降車しました。😄 切符 150円 190円 乗車駅 うめだ じゅうそう みくに 乗車する Image: Wikipedia"
+
+
+bin/rails test test/system/tickets_test.rb:16
+
+S...[Screenshot]: tmp/screenshots/failures_test_同じ駅で降りる場合.png
+
+F
+
+Failure:
+TicketsTest#test_同じ駅で降りる場合 [/Users/jit/dev/sandbox/train-ticket-rails/test/system/tickets_test.rb:37]:
+expected to find text "降車駅 では降車できません。" in "TrainTicketRails 降車しました。😄 切符 150円 190円 乗車駅 うめだ じゅうそう みくに 乗車する Image: Wikipedia"
 
 
 bin/rails test test/system/tickets_test.rb:28
 
 
 
-Finished in 6.378031s, 0.7839 runs/s, 1.0975 assertions/s.
-5 runs, 7 assertions, 1 failures, 0 errors, 0 skips
+Finished in 9.524030s, 0.6300 runs/s, 0.8400 assertions/s.
+6 runs, 8 assertions, 2 failures, 0 errors, 1 skips
+
+You have skipped tests. Run with --verbose for details.
 ```
 
 テストがパスするように実装してください。
 
-### Ex4. 最終確認＆Pull requestの作成
+### Ex5. 特殊ケースの実装
+
+`test/system/tickets_test.rb`を開き、「すでに使用済みの切符を指定されたらトップページに移動する」のテストケースにある、`skip 'Please implement this!'`の行を削除してください。
+
+Ex4と同じ要領で実装してください。
+
+### Ex6. 最終確認＆Pull requestの作成
 
 すべてのテストがパスすることを確認してください。
 
 ```
 $ bin/rails test && bin/rails test:system
-Running via Spring preloader in process 26100
-Run options: --seed 13747
+Running via Spring preloader in process 28528
+Run options: --seed 4005
 
 # Running:
 
 ..........
 
-Finished in 0.202743s, 49.3235 runs/s, 64.1206 assertions/s.
+Finished in 0.067580s, 147.9728 runs/s, 192.3646 assertions/s.
 10 runs, 13 assertions, 0 failures, 0 errors, 0 skips
-Run options: --seed 27824
+Run options: --seed 10018
 
 # Running:
 
@@ -263,22 +287,22 @@ Puma starting in single mode...
 * Version 3.9.1 (ruby 2.4.1-p111), codename: Private Caller
 * Min threads: 0, max threads: 1
 * Environment: test
-* Listening on tcp://0.0.0.0:57230
+* Listening on tcp://0.0.0.0:64152
 Use Ctrl-C to stop
-.....
+......
 
-Finished in 3.734839s, 1.3387 runs/s, 2.1420 assertions/s.
-5 runs, 8 assertions, 0 failures, 0 errors, 0 skips
+Finished in 4.652693s, 1.2896 runs/s, 2.5792 assertions/s.
+6 runs, 12 assertions, 0 failures, 0 errors, 0 skips
 ```
 
-実装が完了したら、Pull requestを作成して回答を提出してください。
+実装が完了したら、Pull requestを作成して解答を提出してください。
 
 ### 備考
 
 - 最後まで回答できなかった場合は、途中でギブアップして提出してもらってもOKです。
 - こだわった点やアピールポイントがあれば、Pull requestのDescriptionに記述してください。
 
-## Inquiries
+## お問い合わせ
 
 何か不明な点があれば、[@jnchito](https://twitter.com/jnchito/)までご連絡ください。
 
