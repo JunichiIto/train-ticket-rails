@@ -1,8 +1,8 @@
 <% if model.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(model.errors.count, "error") %> prohibited this blog from being saved:</h2>
+  <div class="error-explanation alert alert-danger">
+    入力値に問題があります。
 
-    <ul>
+    <ul class="error-messages">
       <% model.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>

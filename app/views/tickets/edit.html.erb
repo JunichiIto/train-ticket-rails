@@ -7,7 +7,7 @@
 
   <div class="field form-group">
     <%= form.label :exited_gate_id %>
-    <% gate_collection = options_from_collection_for_select(Gate.order_by_station_number, :id, :name) %>
+    <% gate_collection = options_from_collection_for_select(Gate.order_by_station_number, :id, :name, @ticket.exited_gate_id) %>
     <%= form.select :exited_gate_id, gate_collection, { include_blank: false }, id: :ticket_exited_gate_id, class: 'form-control'  %>
   </div>
 

@@ -15,7 +15,6 @@ class TicketsController < ApplicationController
     if @ticket.save
       redirect_to [:edit, @ticket], notice: '乗車しました。🚃'
     else
-      flash_for_error
       render :new
     end
   end
@@ -31,7 +30,6 @@ class TicketsController < ApplicationController
     if @ticket.update(ticket_update_params)
       redirect_to root_path, notice: '降車しました。😄'
     else
-      flash_for_error
       render :edit
     end
   end
@@ -42,10 +40,6 @@ class TicketsController < ApplicationController
     if @ticket.exited?
       redirect_to root_path, notice: '降車済みの切符です。'
     end
-  end
-
-  def flash_for_error
-    flash.now[:alert] = '入力値に問題があります。'
   end
 
   def ticket_create_params
