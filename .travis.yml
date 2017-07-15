@@ -1,0 +1,27 @@
+sudo: required
+dist: trusty
+language: ruby
+rvm:
+  - 2.4.1
+cache: bundler
+bundler_args: --without production --deployment
+
+before_install:
+  - gem install bundler --pre
+
+  - export CHROME_BIN=/usr/bin/google-chrome
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sudo apt-get update
+  - sudo apt-get install -y libappindicator1 fonts-liberation
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome*.deb
+
+  - VERSION=$(curl http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+  - wget http://chromedriver.storage.googleapis.com/$VERSION/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - sudo cp chromedriver /usr/bin/.
+  - sudo chmod +x /usr/bin/chromedriver
+script:
+  - bin/rails test
+  - bin/rails test:system

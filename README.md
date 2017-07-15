@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/JunichiIto/train-ticket-rails.svg?branch=master)](https://travis-ci.org/JunichiIto/train-ticket-rails)
+
 # TrainTicketRails
 
 Sample application for Rails Developers Meetup.
