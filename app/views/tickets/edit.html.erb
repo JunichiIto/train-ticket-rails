@@ -2,8 +2,15 @@
   <%= "#{t('activerecord.attributes.ticket.fare')}：#{@ticket.fare}円 / #{t('activerecord.attributes.ticket.entered_gate')}：#{@ticket.entered_gate.name}" %>
 </p>
 
-<%= simple_form_for @ticket, html: { class: 'form-inline' } do |f| %>
-  <%= f.association :exited_gate, collection: Gate.order_by_station_number, include_blank: false %>
+<%= form_with(model: @ticket, local: true, class: 'form-inline') do |form| %>
+  <%= render 'errors', model: @ticket %>
+
+  <div class="field form-group">
+    <%= form.label :exited_gate_id %>
+    <% gate_collection = options_from_collection_for_select(Gate.order_by_station_number, :id, :name) %>
+    <%= form.select :exited_gate_id, gate_collection, { include_blank: false }, id: :ticket_exited_gate_id, class: 'form-control'  %>
+  </div>
+
   <%= button_tag class: 'btn btn-info' do %>
     <%= fa_icon 'sign-out', text: '降車する' %>
   <% end %>

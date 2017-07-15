@@ -1,7 +1,18 @@
-<%= simple_form_for @ticket, html: { class: 'form-inline' } do |f| %>
-  <% fare_collection = Gate::FARES.map { |fare| ["#{fare}円", fare] } %>
-  <%= f.input :fare, collection: fare_collection, include_blank: false %>
-  <%= f.association :entered_gate, collection: Gate.order_by_station_number, include_blank: false %>
+<%= form_with(model: @ticket, local: true, class: 'form-inline') do |form| %>
+  <%= render 'errors', model: @ticket %>
+
+  <div class="field form-group">
+    <%= form.label :fare %>
+    <% fare_collection = Gate::FARES.map { |fare| ["#{fare}円", fare] } %>
+    <%= form.select :fare, fare_collection, { include_blank: false }, id: :ticket_fare, class: 'form-control' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :entered_gate_id %>
+    <% gate_collection = options_from_collection_for_select(Gate.order_by_station_number, :id, :name) %>
+    <%= form.select :entered_gate_id, gate_collection, { include_blank: false }, id: :ticket_entered_gate_id, class: 'form-control'  %>
+  </div>
+
   <%= button_tag class: 'btn btn-success' do %>
     <%= fa_icon 'subway', text: '乗車する' %>
   <% end %>

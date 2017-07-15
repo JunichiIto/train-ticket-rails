@@ -37,4 +37,6 @@ ja:
       ticket:
         fare: 切符
         entered_gate: 乗車駅
+        entered_gate_id: 乗車駅
         exited_gate: 降車駅
+        exited_gate_id: 降車駅
