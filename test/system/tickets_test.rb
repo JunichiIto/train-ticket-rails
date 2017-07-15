@@ -22,7 +22,19 @@ class TicketsTest < ApplicationSystemTestCase
 
     select 'みくに', from: '降車駅'
     click_button '降車する'
-    assert_text 'では降車できません。'
+    assert_text '降車駅 では降車できません。'
+  end
+
+  test '同じ駅で降りる場合' do
+    visit root_path
+    select '150円', from: '切符'
+    select 'うめだ', from: '乗車駅'
+    click_button '乗車する'
+    assert_text '乗車しました。'
+
+    select 'うめだ', from: '降車駅'
+    click_button '降車する'
+    assert_text '降車駅 では降車できません。'
   end
 
   test 'すでに使用済みの切符を指定されたらトップページに移動する' do
