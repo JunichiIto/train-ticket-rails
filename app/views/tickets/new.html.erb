@@ -3,7 +3,7 @@
 
   <div class="field form-group">
     <%= form.label :fare %>
-    <% fare_collection = Gate::FARES.map { |fare| ["#{fare}円", fare] } %>
+    <% fare_collection = FareRule.pluck(:money).map { |fare| ["#{fare}円", fare] } %>
     <%= form.select :fare, fare_collection, { include_blank: false }, id: :ticket_fare, class: 'form-control' %>
   </div>
 
