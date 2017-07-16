@@ -35,7 +35,6 @@ class GateTest < ActiveSupport::TestCase
   end
 
   test 'みくにで150円の切符を買って、うめだで降りる（運賃不足）' do
-    skip 'Please implement this!'
     ticket = Ticket.create!(fare: 150, entered_gate: @mikuni)
     refute @umeda.exit?(ticket)
   end
