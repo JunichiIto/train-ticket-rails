@@ -5,6 +5,10 @@ class Ticket < ApplicationRecord
   validates :entered_gate_id, presence: true
   validate :ensure_exitable_gate
 
+  def used?
+    !!exited_gate_id
+  end
+
   private
 
   def ensure_exitable_gate

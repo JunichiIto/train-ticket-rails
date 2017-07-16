@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :load_ticket, only: %i(edit update show)
+  before_action :reject_used_ticket, only: %i(edit update)
 
   def index
     redirect_to root_path
@@ -45,5 +46,11 @@ class TicketsController < ApplicationController
 
   def load_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def reject_used_ticket
+    if @ticket.used?
+      redirect_to root_path, alert: '降車済みの切符です。⛔'
+    end
   end
 end
