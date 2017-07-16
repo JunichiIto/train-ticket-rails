@@ -16,5 +16,9 @@ class FareRule
     def each(&block)
       all.each(&block)
     end
+
+    def pluck(key)
+      map(&:"#{key}")
+    end
   end
 end

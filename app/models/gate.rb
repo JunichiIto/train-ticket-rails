@@ -1,7 +1,5 @@
 # NOTE: Gate = 改札機のイメージ
 class Gate < ApplicationRecord
-  FARES = FareRule.map(&:money)
-
   validates :name, presence: true, uniqueness: true
   validates :station_number, presence: true, uniqueness: true
 
