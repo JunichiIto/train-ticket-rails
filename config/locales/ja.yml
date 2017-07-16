@@ -40,3 +40,10 @@ ja:
         entered_gate_id: 乗車駅
         exited_gate: 降車駅
         exited_gate_id: 降車駅
+    errors:
+      models:
+        ticket:
+          attributes:
+            exited_gate_id:
+              not_exitable_gate: "では降車できません。🙅"
+
