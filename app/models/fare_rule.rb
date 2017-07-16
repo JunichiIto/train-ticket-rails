@@ -20,5 +20,14 @@ class FareRule
     def pluck(key)
       map(&:"#{key}")
     end
+
+    def find_by(number_of_section:)
+      find { |f| f.number_of_section == number_of_section }
+    end
+
+    def find_by_gates(from, to)
+      number_of_section = (from.station_number - to.station_number).abs
+      find_by(number_of_section: number_of_section)
+    end
   end
 end

@@ -6,18 +6,7 @@ class Gate < ApplicationRecord
   scope :order_by_station_number, -> { order(:station_number) }
 
   def exit?(ticket)
-    fare_rule = fare_rule_by_gate(ticket.entered_gate)
+    fare_rule = FareRule.find_by_gates(ticket.entered_gate, self)
     fare_rule ? ticket.fare == fare_rule.money : false
-  end
-
-  private
-
-  def fare_rule_by_gate(other_gate)
-    number_of_section = number_of_section_by_gate(other_gate)
-    FareRule.find { |f| f.number_of_section == number_of_section }
-  end
-
-  def number_of_section_by_gate(other_gate)
-    (other_gate.station_number - station_number).abs
   end
 end
