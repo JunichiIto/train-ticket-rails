@@ -51,7 +51,6 @@ class GateTest < ActiveSupport::TestCase
 
   # その他
   test '同じ駅では降りられない' do
-    skip 'Please implement this!'
     ticket = Ticket.create!(fare: 190, entered_gate: @umeda)
     refute @umeda.exit?(ticket)
 
