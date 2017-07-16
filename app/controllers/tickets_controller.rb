@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :load_ticket, only: %i(edit update show)
+  before_action :require_ticket_not_used, only: %i(edit update)
 
   def index
     redirect_to root_path
@@ -12,7 +13,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(ticket_create_params)
     if @ticket.save
-      redirect_to [:edit, @ticket], notice: '乗車しました。🚃'
+      redirect_to [:edit, @ticket], notice: t('flash.get_on')
     else
       render :new
     end
@@ -27,7 +28,7 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update(ticket_update_params)
-      redirect_to root_path, notice: '降車しました。😄'
+      redirect_to root_path, notice: t('flash.get_off')
     else
       render :edit
     end
@@ -45,5 +46,9 @@ class TicketsController < ApplicationController
 
   def load_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def require_ticket_not_used
+    redirect_to root_path, alert: t('flash.alread_used') if @ticket.used?
   end
 end

@@ -30,6 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ja:
+  flash:
+    get_on: 乗車しました。🚃
+    get_off: 降車しました。😄
+    alread_used: 降車済みの切符です。
+
   activerecord:
     models:
       ticket: 切符
@@ -40,3 +45,7 @@ ja:
         entered_gate_id: 乗車駅
         exited_gate: 降車駅
         exited_gate_id: 降車駅
+    errors:
+      models:
+        ticket:
+          can_not_exit: 降車駅 では降車できません。
