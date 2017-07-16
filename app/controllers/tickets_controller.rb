@@ -49,6 +49,6 @@ class TicketsController < ApplicationController
   end
 
   def require_ticket_not_used
-    redirect_to root_path, alert: '降車済みの切符です。' if @ticket.exited_gate.present?
+    redirect_to root_path, alert: '降車済みの切符です。' if @ticket.used?
   end
 end
