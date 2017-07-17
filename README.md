@@ -6,7 +6,7 @@ Sample application for Rails Developers Meetup.
 
 電車の改札口を簡易的にシミュレーションするRailsアプリケーションです。
 
-## Application Overview
+## アプリケーションの概要
 
 切符を購入して乗車し、目的の駅で降車する流れを以下のようにシミュレートします。
 
@@ -71,7 +71,14 @@ Sample application for Rails Developers Meetup.
 
 ### その他
 
-今回のサンプルアプリケーションでは、Gateクラス（改札機クラス）に運賃が定数として埋め込まれています（`Gate::FARES`）。  
+今回のサンプルアプリケーションでは、Gateクラス（改札機クラス）に運賃が定数として埋め込まれています。  
+
+```ruby
+class Gate < ApplicationRecord
+  FARES = [150, 190].freeze
+end
+```
+
 「こんなところに運賃が定義されているのは設計としておかしい！」という意見もあるかもしれませんが、これはあくまで簡易的なサンプルアプリケーションということで、スルーしてやってください 🙇
 
 ## 解答の流れ
@@ -82,6 +89,16 @@ Sample application for Rails Developers Meetup.
 - 開発環境をセットアップする（下記参照）
 - 設問を解く（内容は後述）
 - 自分のリポジトリからupstreamに対して、Pull requestを作成する
+
+### 【注意】模範解答と他の参加者のPull requestについて
+
+以下のような操作をすると、@JunichiIto が書いた模範解答や他の参加者が提出した解答が見えてしまいます。  
+
+- 過去のcommit履歴をたどる
+- answerブランチの中を覗く
+- GitHubのPull requestsタブを開く
+
+わざわざカンニングしてまでこの問題を解こうとする人はいないと思いますが、「意図せず他の人の解答が見えてしまった！」ということが起きないように注意してください。
 
 ## 解答に利用するRubyのバージョン
 
@@ -133,18 +150,30 @@ bin/rails test && bin/rails test:system
 次のような表示になればOKです。
 
 ```
-Running via Spring preloader in process 27919
-Run options: --seed 3647
+Running via Spring preloader in process 51905
+Run options: --seed 63245
 
 # Running:
 
-.S..S..S..
+.....SS...S.
 
-Finished in 0.067467s, 148.2206 runs/s, 118.5765 assertions/s.
-10 runs, 8 assertions, 0 failures, 0 errors, 3 skips
+Finished in 0.068721s, 174.6191 runs/s, 145.5159 assertions/s.
+12 runs, 10 assertions, 0 failures, 0 errors, 3 skips
 
 You have skipped tests. Run with --verbose for details.
-Run options: --seed 40891
+➜  train-ticket-rails git:(master) ✗ bin/rails test && bin/rails test:system
+Running via Spring preloader in process 52004
+Run options: --seed 35280
+
+# Running:
+
+SS.....S....
+
+Finished in 0.078131s, 153.5882 runs/s, 127.9902 assertions/s.
+12 runs, 10 assertions, 0 failures, 0 errors, 3 skips
+
+You have skipped tests. Run with --verbose for details.
+Run options: --seed 25329
 
 # Running:
 
@@ -152,11 +181,11 @@ Puma starting in single mode...
 * Version 3.9.1 (ruby 2.4.1-p111), codename: Private Caller
 * Min threads: 0, max threads: 1
 * Environment: test
-* Listening on tcp://0.0.0.0:63371
+* Listening on tcp://0.0.0.0:59843
 Use Ctrl-C to stop
-..SS.S
+..S.SS
 
-Finished in 3.099099s, 1.9360 runs/s, 1.2907 assertions/s.
+Finished in 3.057958s, 1.9621 runs/s, 1.3081 assertions/s.
 6 runs, 4 assertions, 0 failures, 0 errors, 3 skips
 
 You have skipped tests. Run with --verbose for details.
@@ -175,24 +204,36 @@ You have skipped tests. Run with --verbose for details.
 
 ```
 $ bin/rails test
-Running via Spring preloader in process 28084
-Run options: --seed 58060
+Running via Spring preloader in process 52153
+Run options: --seed 63912
 
 # Running:
 
-..S...F
+..S.S..S....
+
+Finished in 0.070008s, 171.4090 runs/s, 142.8408 assertions/s.
+12 runs, 10 assertions, 0 failures, 0 errors, 3 skips
+
+You have skipped tests. Run with --verbose for details.
+➜  train-ticket-rails git:(master) ✗ bin/rails test
+Running via Spring preloader in process 52209
+Run options: --seed 34427
+
+# Running:
+
+.S.....SF
 
 Failure:
-GateTest#test_うめだで150円の切符を買って、みくにで降りる（運賃不足） [/Users/jit/dev/sandbox/train-ticket-rails/test/models/gate_test.rb:18]:
+GateTest#test_うめだで150円の切符を買って、みくにで降りる（運賃不足） [/Users/jit/dev/sandbox/train-ticket-rails/test/models/gate_test.rb:23]:
 Expected true to not be truthy.
 
 
-bin/rails test test/models/gate_test.rb:16
+bin/rails test test/models/gate_test.rb:21
 
-..S
+...
 
-Finished in 0.058427s, 171.1537 runs/s, 154.0384 assertions/s.
-10 runs, 9 assertions, 1 failures, 0 errors, 2 skips
+Finished in 0.075118s, 159.7487 runs/s, 146.4363 assertions/s.
+12 runs, 11 assertions, 1 failures, 0 errors, 2 skips
 
 You have skipped tests. Run with --verbose for details.
 ```
@@ -272,16 +313,16 @@ Ex4と同じ要領で実装してください。
 
 ```
 $ bin/rails test && bin/rails test:system
-Running via Spring preloader in process 28528
-Run options: --seed 4005
+Running via Spring preloader in process 51715
+Run options: --seed 52644
 
 # Running:
 
-..........
+............
 
-Finished in 0.067580s, 147.9728 runs/s, 192.3646 assertions/s.
-10 runs, 13 assertions, 0 failures, 0 errors, 0 skips
-Run options: --seed 10018
+Finished in 0.082952s, 144.6620 runs/s, 180.8275 assertions/s.
+12 runs, 15 assertions, 0 failures, 0 errors, 0 skips
+Run options: --seed 42830
 
 # Running:
 
@@ -289,11 +330,11 @@ Puma starting in single mode...
 * Version 3.9.1 (ruby 2.4.1-p111), codename: Private Caller
 * Min threads: 0, max threads: 1
 * Environment: test
-* Listening on tcp://0.0.0.0:64152
+* Listening on tcp://0.0.0.0:59614
 Use Ctrl-C to stop
 ......
 
-Finished in 4.652693s, 1.2896 runs/s, 2.5792 assertions/s.
+Finished in 4.896446s, 1.2254 runs/s, 2.4508 assertions/s.
 6 runs, 12 assertions, 0 failures, 0 errors, 0 skips
 ```
 
@@ -303,6 +344,15 @@ Finished in 4.652693s, 1.2896 runs/s, 2.5792 assertions/s.
 
 - 最後まで回答できなかった場合は、途中でギブアップして提出してもらってもOKです。
 - こだわった点やアピールポイントがあれば、Pull requestのDescriptionに記述してください。
+
+### ボーナス課題：制限事項を無視して実装してみる
+
+この勉強会では解答のバリエーションが増えすぎないように制限事項をたくさん設けていますが、この問題を解いたみなさんはおそらく「自分だったらこう実装したい！」という思いがふつふつと沸いてくると思います。
+
+解答を提出したら、今度は制限事項を無視して自分の好きなように実装してみてください。  
+自分が書いたコードだけでなく、既存のコードをリファクタリングしていくのもOKです。
+
+ただし、「制限事項を無視した実装」は今回の勉強会のレビュー対象外なので、勉強会の参加者同士や、会社の同僚と一緒にコードレビューしてください。
 
 ## お問い合わせ
 
