@@ -8,6 +8,23 @@ class Gate < ApplicationRecord
   scope :order_by_station_number, -> { order(:station_number) }
 
   def exit?(ticket)
-    true
+    entered_gate = ticket.entered_gate
+    return false if same?(entered_gate)
+    fare(entered_gate) == ticket.fare # FIXME: 支払った金額が多い場合のことが考慮されていない
+  end
+
+  private
+
+  def fare(other)
+    # FIXME: 同じ駅のときの料金を強制的にnilにしている。現状のFARESの構造にベッタリと依存している
+    ([nil] + FARES)[distance(other)]
+  end
+
+  def distance(other)
+    (station_number - other.station_number).abs
+  end
+
+  def same?(other)
+    station_number == other.station_number
   end
 end
