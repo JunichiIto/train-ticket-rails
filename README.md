@@ -150,18 +150,6 @@ bin/rails test && bin/rails test:system
 次のような表示になればOKです。
 
 ```
-Running via Spring preloader in process 51905
-Run options: --seed 63245
-
-# Running:
-
-.....SS...S.
-
-Finished in 0.068721s, 174.6191 runs/s, 145.5159 assertions/s.
-12 runs, 10 assertions, 0 failures, 0 errors, 3 skips
-
-You have skipped tests. Run with --verbose for details.
-➜  train-ticket-rails git:(master) ✗ bin/rails test && bin/rails test:system
 Running via Spring preloader in process 52004
 Run options: --seed 35280
 
@@ -204,18 +192,6 @@ You have skipped tests. Run with --verbose for details.
 
 ```
 $ bin/rails test
-Running via Spring preloader in process 52153
-Run options: --seed 63912
-
-# Running:
-
-..S.S..S....
-
-Finished in 0.070008s, 171.4090 runs/s, 142.8408 assertions/s.
-12 runs, 10 assertions, 0 failures, 0 errors, 3 skips
-
-You have skipped tests. Run with --verbose for details.
-➜  train-ticket-rails git:(master) ✗ bin/rails test
 Running via Spring preloader in process 52209
 Run options: --seed 34427
 
@@ -259,6 +235,7 @@ Ex1と同じ要領で実装してください。
 システムテストを実行し、テストが失敗することを確認してください。
 
 ```
+$ bin/rails test:system
 Run options: --seed 13045
 
 # Running:
