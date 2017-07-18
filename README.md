@@ -2,7 +2,7 @@
 
 # TrainTicketRails
 
-Sample application for Rails Developers Meetup.
+Sample application for [Rails Developers Meetup #4](https://rails-developers-meetup.connpass.com/).
 
 電車の改札口を簡易的にシミュレーションするRailsアプリケーションです。
 
@@ -92,7 +92,7 @@ end
 
 ### 【注意】模範解答と他の参加者のPull requestについて
 
-以下のような操作をすると、@JunichiIto が書いた模範解答や他の参加者が提出した解答が見えてしまいます。  
+以下のような操作をすると、出題者の模範解答や他の参加者が提出した解答が見えてしまいます。  
 
 - 過去のcommit履歴をたどる
 - answerブランチの中を覗く
