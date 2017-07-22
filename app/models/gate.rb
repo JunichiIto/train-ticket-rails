@@ -9,7 +9,13 @@ class Gate < ApplicationRecord
 
   def exit?(ticket)
     # ticketを受け取り降車可能かboolを返すメソッド
-    if ticket.fare >= calculate_fare(station_number, ticket.entered_gate.station_number)
+    # 料金が不足している場合・同じ駅の場合はfalseを返す
+    entered_station_num = station_number
+    exited_station_num = ticket.entered_gate.station_number
+    
+    return false if exit_the_same_station?(entered_station_num, exited_station_num)
+    
+    if ticket.fare >= calculate_fare(entered_station_num, exited_station_num)
       true
     else
       false
@@ -23,5 +29,13 @@ class Gate < ApplicationRecord
     diff = (exited_station_num - entered_station_num).abs
     idx = diff - 1
     FARES[idx]
+  end
+  
+  def exit_the_same_station?(entered_station_num, exited_station_num)
+    if entered_station_num == exited_station_num
+      true
+    else
+      false
+    end
   end
 end
