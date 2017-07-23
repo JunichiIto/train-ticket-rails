@@ -49,8 +49,7 @@ class TicketsController < ApplicationController
   end
 
   def check_exited_ticket
-    # 降車済みは使えないというのはmodelそうの知識だが、
-    # それをどうハンドリングするかはcontrollerの知識なのでこのように実装した
+    # 降車済みの切符か判断し、降車済みの場合はroot_pathにリダイレクトするメソッド
     if @ticket.is_exited_one?
       redirect_to root_path, alert: '降車済みの切符です。'
     end
