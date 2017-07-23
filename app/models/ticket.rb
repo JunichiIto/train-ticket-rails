@@ -6,8 +6,8 @@ class Ticket < ApplicationRecord
 
   validate :can_get_off?, on: :update
 
-  def unused?
-    exited_gate.blank?
+  def used?
+    exited_gate.present?
   end
 
   def can_get_off?
