@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :load_ticket, only: %i(edit update show)
+  before_action :ticket_should_be_unused, only: %i(edit update)
 
   def index
     redirect_to root_path
@@ -34,6 +35,10 @@ class TicketsController < ApplicationController
   end
 
   private
+
+  def ticket_should_be_unused
+    redirect_to root_path, alert: '降車済みの切符です。' unless @ticket.unused?
+  end
 
   def ticket_create_params
     params.require(:ticket).permit(:fare, :entered_gate_id)

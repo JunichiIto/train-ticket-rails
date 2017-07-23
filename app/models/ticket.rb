@@ -6,6 +6,10 @@ class Ticket < ApplicationRecord
 
   validate :can_get_off?, on: :update
 
+  def unused?
+    exited_gate.blank?
+  end
+
   def can_get_off?
     unless exited_gate.exit?(self)
       errors[:exited_gate] << 'では降車できません。'
