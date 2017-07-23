@@ -8,6 +8,8 @@ class Gate < ApplicationRecord
   scope :order_by_station_number, -> { order(:station_number) }
 
   def exit?(ticket)
-    true
+    entered_gate = ticket.entered_gate
+    fare_index = (self.station_number - entered_gate.station_number).abs - 1
+    Gate::FARES[fare_index] <= ticket.fare
   end
 end
