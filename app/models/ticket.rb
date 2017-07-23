@@ -4,13 +4,13 @@ class Ticket < ApplicationRecord
   validates :fare, presence: true, inclusion: Gate::FARES
   validates :entered_gate_id, presence: true
 
-  validate :can_get_off?, if: -> { exited_gate.present? }, on: :update
+  validate :exit?, if: -> { exited_gate.present? }, on: :update
 
   def used?
     exited_gate.present?
   end
 
-  def can_get_off?
+  def exit?
     unless exited_gate.exit?(self)
       errors[:exited_gate] << 'では降車できません。'
     end

@@ -1,7 +1,7 @@
 # NOTE: Gate = 改札機のイメージ
 class Gate < ApplicationRecord
   FARES = [150, 190].freeze
-  FARE_CAN_NOT_GET_OFF = Float::INFINITY
+  FARE_CAN_NOT_EXIT = Float::INFINITY
 
   validates :name, presence: true, uniqueness: true
   validates :station_number, presence: true, uniqueness: true
@@ -14,7 +14,7 @@ class Gate < ApplicationRecord
 
   def calculate_fare(ticket)
     case calculate_boarding_section(ticket)
-    when 0; FARE_CAN_NOT_GET_OFF
+    when 0; FARE_CAN_NOT_EXIT
     when 1; Gate::FARES[0]
     when 2; Gate::FARES[1]
     else raise 'fare is not defined'
