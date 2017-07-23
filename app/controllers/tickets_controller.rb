@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :load_ticket, only: %i(edit update show)
+  before_action :check_exited_ticket, only: %i(edit update)
 
   def index
     redirect_to root_path
@@ -45,5 +46,14 @@ class TicketsController < ApplicationController
 
   def load_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def check_exited_ticket
+    # 降車済みは使えないというのはmodelそうの知識だが、
+    # それをどうハンドリングするかはcontrollerの知識なのでこのように実装した
+    if @ticket.is_exited_one?
+      redirect_to root_path, alert: '降車済みの切符です。'
+    end
+    
   end
 end
