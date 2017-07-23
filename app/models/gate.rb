@@ -9,6 +9,7 @@ class Gate < ApplicationRecord
 
   def exit?(ticket)
     entered_gate = ticket.entered_gate
+    return false if self.id == entered_gate.id
     fare_index = (self.station_number - entered_gate.station_number).abs - 1
     Gate::FARES[fare_index] <= ticket.fare
   end
