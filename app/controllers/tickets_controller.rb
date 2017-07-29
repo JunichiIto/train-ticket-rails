@@ -23,9 +23,14 @@ class TicketsController < ApplicationController
   end
 
   def edit
+    stored_record = Ticket.find(@ticket.id)
+    redirect_to root_path, alert: '降車済みの切符です。' if stored_record.exited_gate_id
   end
 
   def update
+    stored_record = Ticket.find(@ticket.id)
+    return redirect_to root_path, alert: '降車済みの切符です。' if stored_record.exited_gate_id
+
     if @ticket.update(ticket_update_params)
       redirect_to root_path, notice: '降車しました。😄'
     else
