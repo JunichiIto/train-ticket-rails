@@ -10,6 +10,6 @@ class Gate < ApplicationRecord
   def exit?(ticket)
     entered_gate = Gate.find(ticket.entered_gate_id)
     section = (self.station_number - entered_gate.station_number).abs
-    ticket.fare >= FARES[section - 1]
+    (section != 0) ? (ticket.fare >= FARES[section - 1]) : false
   end
 end
