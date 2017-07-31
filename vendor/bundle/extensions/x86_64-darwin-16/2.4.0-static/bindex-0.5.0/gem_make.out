@@ -1,0 +1,15 @@
+current directory: /Users/n0_h0/Project/train-ticket-rails/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+/Users/n0_h0/.rbenv/versions/2.4.1/bin/ruby -r ./siteconf20170730-8110-13e1skq.rb extconf.rb
+creating Makefile
+
+current directory: /Users/n0_h0/Project/train-ticket-rails/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /Users/n0_h0/Project/train-ticket-rails/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.bundle
+
+current directory: /Users/n0_h0/Project/train-ticket-rails/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20170730-8110-6jxvdh/bindex
