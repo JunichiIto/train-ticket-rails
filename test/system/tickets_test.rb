@@ -14,7 +14,6 @@ class TicketsTest < ApplicationSystemTestCase
   end
 
   test '運賃が足りない場合' do
-    skip 'Please implement this!'
     visit root_path
     select '150円', from: '切符'
     select 'うめだ', from: '乗車駅'
@@ -27,7 +26,6 @@ class TicketsTest < ApplicationSystemTestCase
   end
 
   test '同じ駅で降りる場合' do
-    skip 'Please implement this!'
     visit root_path
     select '150円', from: '切符'
     select 'うめだ', from: '乗車駅'
