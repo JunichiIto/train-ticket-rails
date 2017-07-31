@@ -45,5 +45,6 @@ class TicketsController < ApplicationController
 
   def load_ticket
     @ticket = Ticket.find(params[:id])
+    redirect_to root_path, alert: '降車済みの切符です。' if @ticket.exited_gate_id
   end
 end
