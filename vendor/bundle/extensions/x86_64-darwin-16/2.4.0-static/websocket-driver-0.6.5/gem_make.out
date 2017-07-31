@@ -1,0 +1,15 @@
+current directory: /Users/n0_h0/Project/train-ticket-rails/vendor/bundle/gems/websocket-driver-0.6.5/ext/websocket-driver
+/Users/n0_h0/.rbenv/versions/2.4.1/bin/ruby -r ./siteconf20170730-8110-ntm3g1.rb extconf.rb
+creating Makefile
+
+current directory: /Users/n0_h0/Project/train-ticket-rails/vendor/bundle/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /Users/n0_h0/Project/train-ticket-rails/vendor/bundle/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/n0_h0/Project/train-ticket-rails/vendor/bundle/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20170730-8110-1vlxe6k
