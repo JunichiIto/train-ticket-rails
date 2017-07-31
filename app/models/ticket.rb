@@ -6,6 +6,10 @@ class Ticket < ApplicationRecord
 
   validate :exited_gate_must_be_exitable, on: :update
 
+  def used?
+    exited_gate.present?
+  end
+
   private
 
   def exited_gate_must_be_exitable
