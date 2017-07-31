@@ -13,6 +13,8 @@ class Gate < ApplicationRecord
       true
     when 2
       ticket.fare == 190
+    else
+      false
     end
   end
 end
