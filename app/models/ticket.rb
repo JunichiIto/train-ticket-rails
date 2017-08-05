@@ -8,6 +8,7 @@ class Ticket < ApplicationRecord
   private_constant :RIDE_SECTION_FARES
 
   def pay_enough?(ride_section)
+    return false if ride_section == 0
     fare >= RIDE_SECTION_FARES[ride_section]
   end
 end
