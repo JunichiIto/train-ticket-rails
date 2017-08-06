@@ -16,4 +16,8 @@ class Ticket < ApplicationRecord
     return false if ride_section == 0
     fare >= RIDE_SECTION_FARES[ride_section]
   end
+
+  def already_exit?
+    exited_gate_id.present?
+  end
 end

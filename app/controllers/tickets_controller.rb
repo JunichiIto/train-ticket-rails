@@ -23,6 +23,7 @@ class TicketsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path, notice: '降車済みの切符です。' and return if @ticket.already_exit?
   end
 
   def update
