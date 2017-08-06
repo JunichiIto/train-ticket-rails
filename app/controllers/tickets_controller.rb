@@ -28,7 +28,7 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update(ticket_update_params)
-      redirect_to(root_path, notice: '降車しました。😄')
+      redirect_to root_path, notice: '降車しました。😄'
     else
       render :edit
     end
