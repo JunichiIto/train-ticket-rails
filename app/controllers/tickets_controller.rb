@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :load_ticket, only: %i(edit update show)
+  before_action :redirect_if_ticket_already_exit, only: %i(edit update)
 
   def index
     redirect_to root_path
@@ -23,13 +24,10 @@ class TicketsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path, notice: '降車済みの切符です。' and return if @ticket.already_exit?
   end
 
   def update
-    if @ticket.already_exit?
-      redirect_to(root_path, notice: '降車済みの切符です。') and return
-    elsif @ticket.update(ticket_update_params)
+    if @ticket.update(ticket_update_params)
       redirect_to(root_path, notice: '降車しました。😄')
     else
       render :edit
@@ -48,5 +46,10 @@ class TicketsController < ApplicationController
 
   def load_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def redirect_if_ticket_already_exit
+    redirect_to root_path, notice: '降車済みの切符です。' if @ticket.already_exit?
+    return
   end
 end
