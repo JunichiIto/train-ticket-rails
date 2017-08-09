@@ -8,6 +8,17 @@ class Gate < ApplicationRecord
   scope :order_by_station_number, -> { order(:station_number) }
 
   def exit?(ticket)
-    true
+    ticket.fare >= calculate_fare(count_gate_from(ticket))
+  end
+
+  private
+
+  def count_gate_from(ticket)
+    (station_number - ticket.entered_gate.station_number).abs
+  end
+
+  def calculate_fare(gate_count)
+    return 0 if gate_count == 0
+    FARES[gate_count - 1]
   end
 end
