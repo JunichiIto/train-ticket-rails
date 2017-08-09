@@ -8,6 +8,7 @@ class Gate < ApplicationRecord
   scope :order_by_station_number, -> { order(:station_number) }
 
   def exit?(ticket)
+    raise if ticket.nil?
     gate_count = count_gate_from(ticket)
     return false if gate_count.zero?
     ticket.fare >= calculate_fare(gate_count)
