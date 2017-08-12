@@ -26,7 +26,8 @@ class TicketsController < ApplicationController
   end
 
   def update
-    if @ticket.update(ticket_update_params)
+    gate = Gate.find_by(id: params[:ticket][:exited_gate_id])
+    if gate.exit?(@ticket) && @ticket.update(ticket_update_params)
       redirect_to root_path, notice: '降車しました。😄'
     else
       render :edit

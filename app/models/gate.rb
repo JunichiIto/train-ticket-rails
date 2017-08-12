@@ -12,8 +12,12 @@ class Gate < ApplicationRecord
       if fare <= ticket.fare
         true
       else
+        ticket.errors[:base] << '降車駅 では降車できません。'
         false
       end
+    else
+      ticket.errors[:base] << '降車駅 では降車できません。'
+      false
     end
   end
 
