@@ -8,6 +8,8 @@ class Gate < ApplicationRecord
   scope :order_by_station_number, -> { order(:station_number) }
 
   def exit?(ticket)
+    return false if ticket.entered_gate == self
+
     required_fare = fare_from(ticket.entered_gate)
     ticket.fare >= required_fare
   end
