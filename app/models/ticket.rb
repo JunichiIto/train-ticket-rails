@@ -5,6 +5,10 @@ class Ticket < ApplicationRecord
   validates :entered_gate_id, presence: true
   validate :must_be_able_to_exit, if: ->() { exited_gate }
 
+  def used?
+    !!exited_gate_id
+  end
+
   private
 
   def must_be_able_to_exit
