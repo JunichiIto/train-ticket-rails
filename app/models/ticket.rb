@@ -8,4 +8,8 @@ class Ticket < ApplicationRecord
       errors.add(:exited_gate, "では降車できません。")
     end
   end
+
+  def used?
+    exited_gate_id.present?
+  end
 end
