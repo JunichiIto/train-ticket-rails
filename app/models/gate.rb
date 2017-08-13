@@ -21,23 +21,14 @@ class Gate < ApplicationRecord
     end
   end
 
-  #チケットから駅番号を検索
-  def self.find_station_num(ticket)
-    find(ticket.entered_gate_id).station_number
-  end
-
-  #距離の計算
-  def calc_distance(ticket)
-    station_number - Gate.find_station_num(ticket)
-  end
-
-  #運賃を算出
   def calc_fare(ticket)
-    if calc_distance(ticket) == 0
+    entered_station_num = Gate.find(ticket.entered_gate_id).station_number
+    distance = (station_number - entered_station_num).abs
+    if distance == 0
       false
-    elsif calc_distance(ticket).abs == 1
+    elsif distance == 1
       Gate::FARES[0]
-    elsif calc_distance(ticket).abs == 2
+    elsif distance == 2
       Gate::FARES[1]
     end
   end
