@@ -12,7 +12,19 @@ class Gate < ApplicationRecord
   # @params [Ticket] ticket 購入したチケット
   # @return [Boolean] true:出られる
   def exit?(ticket)
+    return false if ticket.nil?
+    return false if self == ticket.entered_gate
     calc_fare(ticket) <= ticket.fare
+  end
+
+  # 他ゲートとの比較
+  # NOTE: クラスのチェックする？
+  #
+  # @params [Gate] other 比較対象のゲート
+  # @return [Boolean] 駅番号が一致する場合にtrue
+  def ==(other)
+    return false if other.nil?
+    self.station_number == other.station_number
   end
 
   private
