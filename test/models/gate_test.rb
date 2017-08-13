@@ -19,7 +19,7 @@ class GateTest < ActiveSupport::TestCase
   end
 
   test 'うめだで150円の切符を買って、みくにで降りる（運賃不足）' do
-    skip 'Please implement this!'
+    #skip 'Please implement this!'
     ticket = Ticket.create!(fare: 150, entered_gate: @umeda)
     refute @mikuni.exit?(ticket)
   end
@@ -46,7 +46,7 @@ class GateTest < ActiveSupport::TestCase
   end
 
   test 'みくにで150円の切符を買って、うめだで降りる（運賃不足）' do
-    skip 'Please implement this!'
+    #skip 'Please implement this!'
     ticket = Ticket.create!(fare: 150, entered_gate: @mikuni)
     refute @umeda.exit?(ticket)
   end
@@ -63,7 +63,7 @@ class GateTest < ActiveSupport::TestCase
 
   # その他
   test '同じ駅では降りられない' do
-    skip 'Please implement this!'
+    #skip 'Please implement this!'
     ticket = Ticket.create!(fare: 190, entered_gate: @umeda)
     refute @umeda.exit?(ticket)
 
