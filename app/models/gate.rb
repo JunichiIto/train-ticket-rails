@@ -18,6 +18,7 @@ class Gate < ApplicationRecord
 
   def fare_from(other_gate)
     distance = (other_gate.station_number - self.station_number).abs
+    raise "Unexpected 0 distance, self: #{self} other_gate: #{other_gate}" if distance == 0
     FARES[distance - 1]
   end
 end
