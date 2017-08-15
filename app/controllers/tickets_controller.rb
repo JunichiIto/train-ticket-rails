@@ -23,12 +23,20 @@ class TicketsController < ApplicationController
   end
 
   def edit
+    load_ticket
+    redirect_to root_path, notice: '降車済みの切符です。' if @ticket.used?
   end
 
   def update
-    if @ticket.update(ticket_update_params)
-      redirect_to root_path, notice: '降車しました。😄'
+    load_ticket
+    exited_gate = Gate.find(ticket_update_params[:exited_gate_id])
+
+    if @ticket.used?
+      redirect_to root_path, notice: '降車済みの切符です。' if @ticket.used?
+    elsif exited_gate.exit?(@ticket)
+      update_ticket
     else
+      @ticket.errors[:base] << '降車駅 では降車できません。'
       render :edit
     end
   end
@@ -45,5 +53,13 @@ class TicketsController < ApplicationController
 
   def load_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def update_ticket
+    if @ticket.update(ticket_update_params)
+      redirect_to root_path, notice: '降車しました。😄'
+    else
+      render :edit
+    end
   end
 end
