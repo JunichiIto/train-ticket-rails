@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :load_ticket, only: %i(edit update show)
+  before_action :abort_exited_ticket, only: %i(edit update)
 
   def index
     redirect_to root_path
@@ -34,6 +35,12 @@ class TicketsController < ApplicationController
   end
 
   private
+
+  def abort_exited_ticket
+    if @ticket.exited?
+      redirect_to root_path, notice: '降車済みの切符です。'
+    end
+  end
 
   def ticket_create_params
     params.require(:ticket).permit(:fare, :entered_gate_id)
