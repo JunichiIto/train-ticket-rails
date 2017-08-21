@@ -5,13 +5,16 @@ class Ticket < ApplicationRecord
   validates :entered_gate_id, presence: true
 
   validate :gate_exit_should_be_successful, if: -> { exited_gate.present? }
+
+  def exited?
+    exited_gate.present?
+  end
+
+  private
+
   def gate_exit_should_be_successful
     unless exited_gate.exit?(self)
       errors.add(:exited_gate, 'では降車できません。')
     end
-  end
-
-  def exited?
-    exited_gate.present?
   end
 end
