@@ -8,7 +8,7 @@ class Ticket < ApplicationRecord
 
   # カスタムvalidation: exited_gate_idの駅で降りられるか？
   def exited_gate_id_validation
-    return if exited_gate_id.to_i == 0
+    return if exited_gate_id.nil?   # 降車駅が指定されていない場合（≒create直後）はスルーする
 
     unless exited_gate.exit?(self)
       errors.add(:exited_gate, "では降車できません。")

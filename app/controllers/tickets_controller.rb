@@ -45,5 +45,10 @@ class TicketsController < ApplicationController
 
   def load_ticket
     @ticket = Ticket.find(params[:id])
+
+    unless @ticket.exited_gate.nil?
+      flash[:error] = "降車済みの切符です。"
+      redirect_to root_path
+    end
   end
 end
