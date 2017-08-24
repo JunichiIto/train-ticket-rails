@@ -9,8 +9,11 @@ class Gate < ApplicationRecord
 
   # 当駅で降りられる？＝運賃は足りている？
   def exit?(ticket)
-    # 乗車駅と降車駅（当駅）の区間数
+    # 乗車駅と降車駅（当駅）の区間数 ※station_numberの差＝区間数
     traveled = (ticket.entered_gate.station_number - self.station_number).abs
+
+    # 同じ駅では降りられない
+    return false if traveled == 0
 
     # 区間数から所要運賃を算出 ※traveledが範囲外であることは想定しない
     required_fare = FARES[traveled - 1]
