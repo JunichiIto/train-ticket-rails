@@ -5,7 +5,6 @@ class Ticket < ApplicationRecord
   validates :entered_gate_id, presence: true
 
   def already_used?
-    return true if entered_gate_id && exited_gate_id
-    false
+    exited_gate_id.present?
   end
 end
