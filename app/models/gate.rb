@@ -9,7 +9,7 @@ class Gate < ApplicationRecord
 
   def exit?(ticket)
     section_number = calc_section_number(ticket)
-    return false unless section_number >= 1
+    return false if section_number == 0
     ticket.fare >= calc_fare(section_number)
   end
 
