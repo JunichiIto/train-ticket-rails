@@ -1,5 +1,9 @@
 class TicketsController < ApplicationController
   before_action :load_ticket, only: %i(edit update show)
+  before_action :abort_if_exited_ticket, only: %i(edit update)
+
+  TICKET_GOT_OFF = "降車済みの切符です。".freeze
+  CAN_NOT_GET_OFF = "降車駅 では降車できません。".freeze
 
   def index
     redirect_to root_path
@@ -45,5 +49,9 @@ class TicketsController < ApplicationController
 
   def load_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def abort_if_exited_ticket
+    redirect_to root_path, alert: TICKET_GOT_OFF if @ticket.exited?
   end
 end
