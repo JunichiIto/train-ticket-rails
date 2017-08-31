@@ -9,12 +9,17 @@ class Gate < ApplicationRecord
 
   def exit?(ticket)
     ride_section = ride_section(ticket.entered_gate)
-    ticket.pay_enough?(ride_section)
+    pay_enough?(ride_section, ticket.fare)
   end
 
   private
 
   def ride_section(entered_gate)
     (entered_gate.station_number - station_number).abs
+  end
+
+  def pay_enough?(ride_section, fare)
+    return false if ride_section == 0
+    fare >= FARES[ride_section - 1]
   end
 end
