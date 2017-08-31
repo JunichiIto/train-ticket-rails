@@ -50,6 +50,5 @@ class TicketsController < ApplicationController
 
   def redirect_if_ticket_already_exit
     redirect_to root_path, notice: '降車済みの切符です。' if @ticket.already_exit?
-    return
   end
 end
