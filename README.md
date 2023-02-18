@@ -102,25 +102,11 @@ end
 
 ## 解答に利用するRubyのバージョン
 
-2.4.1を推奨。（ただし、2.2.2以上であれば可）
+3.2.1を推奨。
 
 ## 依存する外部アプリケーション
 
 - Google Chrome （システムテストで使用）
-
-## 必要となるPCの設定
-
-ChromeDriverをインストールしてください。（システムテストで使用）
-
-```
-# Macの場合
-brew update
-brew install chromedriver
-```
-
-ChromeDriverを自分でダウンロードして、PATHの通ったディレクトリに配置するのもOKです。
-
-- [Downloads \- ChromeDriver \- WebDriver for Chrome](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 
 ## Railsのセットアップ
 
@@ -144,7 +130,7 @@ rails s
 以下のコマンドを実行し、テストコードが正常に動作することを確認してください。
 
 ```
-bin/rails test && bin/rails test:system
+bin/rails test:all
 ```
 
 次のような表示になればOKです。
@@ -337,9 +323,9 @@ Finished in 4.896446s, 1.2254 runs/s, 2.4508 assertions/s.
 
 ## あわせて読みたい
 
-この問題は「プロを目指す人のためのRuby入門」（2017年11月発売予定）で使用した例題がベースになっています。
+この問題は「プロを目指す人のためのRuby入門」で使用した例題がベースになっています。
 
-[【鋭意制作中】Rubyの入門本「プロを目指す人のためのRuby入門」を執筆しています \- give IT a try](http://blog.jnito.com/entry/2017/05/30/120148)
+[プロを目指す人のためのRuby入門［改訂2版］ 言語仕様からテスト駆動開発・デバッグ技法まで：書籍案内｜技術評論社](https://gihyo.jp/book/2021/978-4-297-12437-3)
 
 ## License
 
