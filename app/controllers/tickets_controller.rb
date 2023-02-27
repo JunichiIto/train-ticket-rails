@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :load_ticket, only: %i(edit update show)
+  before_action :exited_ticket, only: %i(edit update)
 
   def index
     redirect_to root_path
@@ -26,11 +27,12 @@ class TicketsController < ApplicationController
   end
 
   def update
-    if @ticket.update(ticket_update_params)
-      redirect_to root_path, notice: '降車しました。😄'
-    else
-      render :edit
-    end
+    exited_gate = Gate.find_by(id: ticket_update_params["exited_gate_id"])
+
+    return redirect_to root_path, alert: '降車駅 では降車できません。' unless exited_gate.exit?(@ticket)
+
+    @ticket.update(ticket_update_params)
+    return redirect_to root_path, notice: '降車しました。😄'
   end
 
   private
@@ -45,5 +47,9 @@ class TicketsController < ApplicationController
 
   def load_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def exited_ticket
+    return redirect_to root_path, alert: '降車済みの切符です。' if @ticket.exited_gate_id
   end
 end
