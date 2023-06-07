@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :load_ticket, only: %i(edit update show)
+  before_action :reject_used_ticket, only: %i(edit update)
 
   def index
     redirect_to root_path
@@ -26,7 +27,8 @@ class TicketsController < ApplicationController
   end
 
   def update
-    if @ticket.update(ticket_update_params)
+    gate = Gate.find_by(id: params[:ticket][:exited_gate_id])
+    if gate.exit?(@ticket) && @ticket.update(ticket_update_params)
       redirect_to root_path, notice: '降車しました。😄'
     else
       render :edit
@@ -45,5 +47,13 @@ class TicketsController < ApplicationController
 
   def load_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def reject_used_ticket
+    until @ticket.exited_gate_id.nil?
+      flash[:alert] = '降車済みの切符です。'
+      redirect_to root_path
+      return
+    end
   end
 end
