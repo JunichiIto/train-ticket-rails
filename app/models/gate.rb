@@ -8,6 +8,13 @@ class Gate < ApplicationRecord
   scope :order_by_station_number, -> { order(:station_number) }
 
   def exit?(ticket)
-    true
+    distance = distance_from(ticket.entered_gate)
+    distance > 0 && FARES[distance - 1] <= ticket.fare
+  end
+
+  private
+
+  def distance_from(other_gate)
+    (station_number - other_gate.station_number).abs
   end
 end
